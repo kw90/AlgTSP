@@ -16,13 +16,13 @@ import ch.zhaw.ciel.mse.alg.tsp.utils.Utils;
  * The tour starts at the {@link Point} with the lowest id and the points are inserted by ascending id.
  * For positions with an equal cost, the first such position is taken.
  */
-public class GreedyInsertion {
+public class GreedyInsertion implements ISolver {
 	/**
 	 * Solve the given TSP using greedy insertion.
 	 * @param problem The problem to solve.
 	 * @return A list of points. Each point in the problem appears exactly once.
 	 */
-	public static List<Point> solve(Problem problem) {
+	public List<Point> solve(Problem problem) {
 		Point[] points = problem.getPoints().toArray(new Point[problem.getPoints().size()]);
 		Arrays.sort(points, (p1, p2) -> Integer.compare(p1.getId(), p2.getId()));
 		

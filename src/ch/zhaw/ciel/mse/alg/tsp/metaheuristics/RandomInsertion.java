@@ -2,6 +2,7 @@ package ch.zhaw.ciel.mse.alg.tsp.metaheuristics;
 
 import ch.zhaw.ciel.mse.alg.tsp.utils.Instance;
 import ch.zhaw.ciel.mse.alg.tsp.utils.Point;
+import ch.zhaw.ciel.mse.alg.tsp.utils.Problem;
 import ch.zhaw.ciel.mse.alg.tsp.utils.Utils;
 
 import java.util.ArrayList;
@@ -12,10 +13,10 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Kai Waelti on 17.11.16.
  */
-public class RandomInsertion {
+public class RandomInsertion implements ISolver {
 
-    public static List<Point> solve(Instance instance) {
-        Point[] points = instance.getPoints().toArray(new Point[instance.getPoints().size()]);
+    public List<Point> solve(Problem problem) {
+        Point[] points = problem.getPoints().toArray(new Point[problem.getPoints().size()]);
 
         List<Point> pointsList = new ArrayList<>();
         List<Integer> rndmInts = new ArrayList<>();

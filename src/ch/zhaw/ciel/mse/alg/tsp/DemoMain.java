@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.zhaw.ciel.mse.alg.tsp.metaheuristics.GreedyInsertion;
 import ch.zhaw.ciel.mse.alg.tsp.metaheuristics.NearestNeighbour;
+import ch.zhaw.ciel.mse.alg.tsp.metaheuristics.SimulatedAnnealing;
 import ch.zhaw.ciel.mse.alg.tsp.utils.*;
 
 public class DemoMain {
@@ -44,9 +45,10 @@ public class DemoMain {
 
 		System.out.println("Start generating a solution...");
 		//for (int i = 0; i < 100; i++) {
-		//List<Point> solution = RandomInsertion.solve(instance);
-		List<Point> solution = NearestNeighbour.solve(problem);
-		//List<Point> solution = GreedyInsertion.solve(instance);
+		//List<Point> solution = new RandomInsertion().solve(instance);
+		//List<Point> solution = new NearestNeighbour().solve(problem);
+		//List<Point> solution = new GreedyInsertion().solve(instance);
+		List<Point> solution = new SimulatedAnnealing().solve(problem);
 
 		System.out.println("Solution for " + instanceName + " has length: " + Utils.euclideanDistance2D(solution));
 		System.out.println();
@@ -77,12 +79,12 @@ public class DemoMain {
 			System.out.println("        Random Path has length: " + Utils.euclideanDistance2D(solution));
 
 //			//Get the solution obtained with the nearest neighbor heuristic.
-			solution = NearestNeighbour.solve(randomProblem);
+			solution = new NearestNeighbour().solve(randomProblem);
 			Printer.writeToSVG(randomProblem, solution, Paths.get(pathToSolutions, i + "_nearest.html"));
 			System.out.println("        Nearest Neighbor solution has length: " + Utils.euclideanDistance2D(solution));
 
 			//Get the solution obtained with the greedy insertion heuristic.
-			solution = GreedyInsertion.solve(randomProblem);
+			solution = new GreedyInsertion().solve(randomProblem);
 			Printer.writeToSVG(randomProblem, solution, Paths.get(pathToSolutions, i + "_greedy.html"));
 			Printer.writeToSVG(randomProblem, solution, Paths.get(pathToSolutions, i + "_greedy.html"));
 			System.out.println("        Greedy Insertion solution has length: " + Utils.euclideanDistance2D(solution));

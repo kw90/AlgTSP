@@ -6,37 +6,15 @@ import java.util.*;
 /**
  * Created by Kai Waelti on 17.11.16.
  */
-public class NearestNeighbour {
+public class NearestNeighbour implements ISolver {
 
     private static TreeSet<Point> unvisitedPoints;
 
-    public static List<Point> solve(Problem problem) {
+    public List<Point> solve(Problem problem) {
         Point current = null;
-        Point[] points = problem.getPoints().toArray(new Point[problem.getPoints().size()]);
-        List<Point> pointsList = new ArrayList<>(points.length);
-        unvisitedPoints = new TreeSet<Point>(Point::compareTo);
-        unvisitedPoints.addAll(Arrays.asList(points));
-
-        current = unvisitedPoints.first();
-        pointsList.add(current);
-        unvisitedPoints.remove(current);
-
-        //Get closest point from current
-        while (!unvisitedPoints.isEmpty()) {
-            Point next = GetClosestPoint(current);
-            current = next;
-            pointsList.add(current);
-            unvisitedPoints.remove(current);
-        }
-
-        return pointsList;
-    }
-
-    public static List<Point> solve(List<Point> points) {
-        Point current = null;
-        List<Point> pointsList = new ArrayList<>(points.size());
+        List<Point> pointsList = new ArrayList<>(problem.getPoints());
         unvisitedPoints = new TreeSet<>(Point::compareTo);
-        unvisitedPoints.addAll(points);
+        unvisitedPoints.addAll(pointsList);
 
         current = unvisitedPoints.first();
         pointsList.add(current);
